@@ -1,6 +1,6 @@
 <enigma
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="enigma.xsd"
+    xsi:noNamespaceSchemaLocation="../enigma.xsd"
     title="Le perroquet"
     reference="Le cube de jeux. #223"
     image="img/perroquet.svg">
