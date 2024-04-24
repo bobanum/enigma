@@ -1,0 +1,129 @@
+<enigma
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="enigma.xsd"
+	title="Derek et le détecteur de métal"
+	reference="Cube de jeux. #206"
+	image="derek.svg">
+	<intro>Depuis qu'il a acheté un détecteur de métal, Derek a saisi chaque occasion pour essayer de trouver un trésor. La semaine dernière, il s'est servi de son jouet à cinq reprises, mais chaque fois il mettait tant de temps à trouver quelque chose qu'il abandonnait au premier objet trouvé. À l'aide des indices à droite, pouvez-vous classer les excursions de Derek dans le bon ordre en identifiant les lieux où il a cherché, le temps qu'il a passé à chercher et ce qu'il a éventuellement trouvé?</intro>
+	<style>
+		.tableau {
+		font-size:13pt;
+		}
+		.indices ol {
+		font-size:1em;
+		},
+		img.extra {
+		position: absolute;
+		right: .25in;
+		bottom: .75in;
+		height: 100mm;
+		}
+	</style>
+	<props>
+		<prop id="sortie" name="Sortie">
+			<choice id="premiere" abbr="1re">Première</choice>
+			<choice id="deuxieme" abbr="2e">Deuxième</choice>
+			<choice id="troisieme" abbr="3e">Troisième</choice>
+			<choice id="quatrieme" abbr="4e">Quatrième</choice>
+			<choice id="cinquieme" abbr="5e">Cinquième</choice>
+		</prop>
+		<prop id="objet" name="Objet">
+			<choice id="capsule" abbr="Cap">Capsule</choice>
+			<choice id="poignee" abbr="P">Poignée</choice>
+			<choice id="cle" abbr="CA">Clé anglaise</choice>
+			<choice id="cuillere" abbr="Cui">Cuillère</choice>
+			<choice id="jouet" abbr="Jou">Jouet</choice>
+		</prop>
+		<prop id="duree" name="Durée">
+			<choice id="15" abbr="15">15 minutes</choice>
+			<choice id="20" abbr="20">20 minutes</choice>
+			<choice id="25" abbr="25">25 minutes</choice>
+			<choice id="35" abbr="35">35 minutes</choice>
+			<choice id="40" abbr="40">40 minutes</choice>
+		</prop>
+		<prop id="lieu" name="Lieu">
+			<choice id="plage" abbr="Pl">Plage</choice>
+			<choice id="champ" abbr="Ch">Champ</choice>
+			<choice id="jardinami" abbr="JA">Jardin d'un ami</choice>
+			<choice id="sonjardin" abbr="JdD">Jardin de Derek</choice>
+			<choice id="parc" abbr="Pa">Parc</choice>
+		</prop>
+	</props>
+	<clues>
+		<clue>
+			<part>La <ref prop="objet.poignee">poignée</ref> a été trouvée en <ref prop="duree.20">20 minutes</ref>,</part>
+			<part>mais pas dans le <ref prop="lieu.sonjardin">jardin de Derek</ref>.</part>
+		</clue>
+		<clue>
+			<part>La <ref prop="sortie.troisieme">troisième</ref> fois qu'il a utilisé son détecteur de métal, Derek a passé plus d'une <ref prop="duree">demi-heure</ref></part>
+			<part>à chercher dans le <ref prop="lieu.champ">champ d'un fermier</ref>,</part>
+			<part>mais ce n'est pas ce jour-là qu'il a trouvé la <ref prop="objet.capsule">capsule</ref>.</part>
+		</clue>
+		<clue>
+			<part>L'excursion au <ref prop="lieu.parc">parc</ref> n'a donné rien de mieux qu'une vieille <ref prop="objet.cuillere">cuillère</ref>.</part>
+		</clue>
+		<clue>
+			<part>La <ref prop="sortie.quatrieme">quatrième</ref> sortie de Derek a permis de trouver une <ref prop="objet.cle">clé anglaise</ref></part>
+			<part>après des recherches ayant duré moins de <ref prop="duree.40">40 minutes</ref>.</part>
+			<part>L'excursion de <ref prop="duree.25">25 minutes</ref> à la <ref prop="lieu.plage">plage</ref></part>
+			<part>avait eu lieu <ref prop="sortie.quatrieme">avant</ref>.</part>
+		</clue>
+		<clue>
+			<part>La <ref prop="sortie.deuxieme">deuxième</ref> sortie de notre explorateur a duré seulement <ref prop="duree.15">15 minutes</ref>.</part>
+		</clue>
+	</clues>
+	<solution>
+		<case recap="La première sortie de Derek a duré 25 minutes et a eu lieu à la plage. Il a trouvé une capsule.">
+			<prop prop="sortie" choice="premiere" />
+			<prop prop="duree" choice="25" />
+			<prop prop="objet" choice="capsule" />
+			<prop prop="lieu" choice="plage" />
+		</case>
+		<case recap="La deuxième sortie de Derek a duré 15 minutes et a eu lieu au parc. Il a trouvé une cuillère.">
+			<prop prop="sortie" choice="deuxieme" />
+			<prop prop="duree" choice="15" />
+			<prop prop="lieu" choice="parc" />
+			<prop prop="objet" choice="cuillere" />
+		</case>
+		<case recap="La troisième sortie de Derek a duré 40 minutes et a eu lieu dans un champ. Il a trouvé un jouet.">
+			<prop prop="sortie" choice="troisieme" />
+			<prop prop="duree" choice="40" />
+			<prop prop="objet" choice="jouet" />
+			<prop prop="lieu" choice="champ" />
+		</case>
+		<case recap="La quatrième sortie de Derek a duré 35 minutes et a eu lieu dans son jardin. Il a trouvé une clé anglaise.">
+			<prop prop="sortie" choice="quatrieme" />
+			<prop prop="duree" choice="35" />
+			<prop prop="objet" choice="cle" />
+			<prop prop="lieu" choice="sonjardin" />
+		</case>
+		<case recap="La cinquième sortie de Derek a duré 20 minutes et a eu lieu dans le jardin d'un ami. Il a trouvé une poignée.">
+			<prop prop="sortie" choice="cinquieme" />
+			<prop prop="duree" choice="20" />
+			<prop prop="objet" choice="poignee" />
+			<prop prop="lieu" choice="jardinami" />
+		</case>
+	</solution>
+	<findings>
+		<finding clue="1a" formula="poignee=20" />
+		<finding clue="1b" formula="poignee!=sonjardin" />
+		<finding clue="2a" formula="troisieme&gt;25" />
+		<finding clue="2b" formula="troisieme=champ" />
+		<finding clue="2c" formula="troisieme!=capsule" />
+		<finding clue="3a" formula="parc=cuillere" />
+		<finding clue="4a" formula="quatrieme=cle" />
+		<finding deducted="true" formula="troisieme|champ=jouet" />
+		<finding clue="4b" formula="quatrieme&lt;40" />
+		<finding clue="4c" formula="25=#plage" />
+		<finding deducted="true" formula="20|poignee=jardinami" />
+		<finding clue="4d" formula="#25&lt;#quatrieme" />
+		<finding deducted="true" formula="25=capsule=plage" />
+		<finding deducted="true" formula="cle|quatrieme=sonjardin" />
+		<finding clue="5a" formula="#deuxieme=#15" />
+		<finding deducted="true" formula="parc|cuillere=15|deuxieme" />
+		<finding deducted="true" formula="cle|jardin|quatrieme=35" />
+		<finding deducted="true" formula="jouet|champ|troisieme=40" />
+		<finding deducted="true" formula="20|poignee|jardinami=cinquieme" />
+		<finding deducted="true" formula="25|capsule|plage=premiere" />
+	</findings>
+</enigma>

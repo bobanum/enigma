@@ -1,0 +1,55 @@
+{
+    "titre": "Derek et le détecteur de métal",
+    "intro": "Depuis qu'il a acheté un détecteur de métal, Derek a saisi chaque occasion pour essayer de trouver un trésor. La semaine dernière, il s'est servi de son jouet à cinq reprises, mais chaque fois il mettait tant de temps à trouver quelque chose qu'il abandonnait au premier objet trouvé. À l'aide des indices à droite, pouvez-vous classer les excursions de Derek dans le bon ordre en identifiant les lieux où il a cherché, le temps qu'il a passé à chercher et ce qu'il a éventuellement trouvé?",
+    "image": "derek.svg",
+    "style": [
+        ".tableau {font-size:13pt;}", 
+        ".indices ol {font-size:1em;}", 
+        "img.extra {position: absolute;right: .25in;bottom: .75in;height: 100mm;}"
+    ],
+    "indices": [
+        "La poignée a été trouvée en 20 minutes, mais pas dans le jardin de Derek.",
+        "La troisième fois qu'il a utilisé son détecteur de métal, Derek a passé plus d'une demi-heure à chercher dans le champ d'un fermier, mais ce n'est pas ce jour-là qu'il a trouvé la capsule.",
+        "L'excursion au parc n'a donné rien de mieux qu'une vieille cuillère.",
+        "La quatrième sortie de Derek a permis de trouver une clé anglaise après des recherches ayant duré moins de 40 minutes. L'excursion de 25 minutes à la plage avait eu lieu avant.",
+        "La deuxième sortie de notre explorateur a duré seulement 15 minutes."
+    ],
+    "groupes": {
+        "Sortie": [
+            "Première",
+            "Deuxième",
+            "Troisième",
+            "Quatrième",
+            "Cinquième"
+        ],
+        "Objet": [
+            "Capsule",
+            "Poignée",
+            "Clé anglaise",
+            "Cuillère",
+            "Jouet"
+        ],
+        "Durée": [
+            "15 minutes",
+            "20 minutes",
+            "25 minutes",
+            "35 minutes",
+            "40 minutes"
+        ],
+        "Lieu": [
+            "Plage",
+            "Champ",
+            "Jardin d'un ami",
+            "Son jardin",
+            "Parc"
+        ]
+    },
+    "reference": "Cube de jeux. #206",
+    "solution": [
+        [0, 2, 0],
+        [4, 0, 3],
+        [1, 3, 2],
+        [2, 4, 4],
+        [3, 1, 1]
+    ]
+}

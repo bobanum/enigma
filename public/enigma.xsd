@@ -1,0 +1,108 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Définition des types -->
+  <xs:complexType name="Clue">
+    <xs:sequence>
+      <xs:element name="part" type="Part" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Part" mixed="true">
+    <xs:sequence>
+      <xs:element name="ref" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="prop" type="xs:string" />
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Case">
+    <xs:sequence>
+      <xs:element name="prop" minOccurs="4" maxOccurs="4">
+        <xs:complexType>
+          <xs:attribute name="prop" type="xs:string" />
+          <xs:attribute name="choice" type="xs:string" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="recap" type="xs:string" />
+  </xs:complexType>
+
+  <xs:complexType name="Finding">
+    <xs:attribute name="clue" type="xs:string" />
+    <xs:attribute name="formula" type="xs:string" />
+    <xs:attribute name="deducted" type="xs:boolean" default="false" />
+  </xs:complexType>
+  <xs:complexType name="Prop">
+    <xs:sequence>
+      <xs:element name="choice" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="id" type="xs:string" use="required" />
+              <xs:attribute name="abbr" type="xs:string" />
+              <xs:attribute name="attribute" type="xs:string" />
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="HTML" mixed="true">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" processContents="lax" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Définition des éléments -->
+  <xs:element name="enigma">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="intro" type="HTML" />
+        <xs:element name="pre" type="HTML" minOccurs="0" />
+        <xs:element name="post" type="HTML" minOccurs="0" />
+        <xs:element name="style" type="xs:string" minOccurs="0" />
+        <xs:element name="props">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="prop" type="Prop" maxOccurs="unbounded">
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="clues">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="clue" type="Clue" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="solution" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="case" minOccurs="0" maxOccurs="unbounded" type="Case" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="findings" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="finding" minOccurs="0" maxOccurs="unbounded" type="Finding" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="title" type="xs:string" use="required" />
+      <xs:attribute name="reference" type="xs:string" />
+      <xs:attribute name="image" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

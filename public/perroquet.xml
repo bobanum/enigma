@@ -1,0 +1,106 @@
+<enigma
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="enigma.xsd"
+    title="Le perroquet"
+    reference="Le cube de jeux. #223"
+    image="img/perroquet.svg">
+    <intro>J'ai acheté un perroquet récemment avec la ferme intention de lui apprendre à parler. Malheureusement, il semble que quelqu'un ait réussi avant moi. J'ai reçu cinq visiteurs à des jours différents la semaine dernière - deux membres de ma famille et trois réparateurs - et le perroquet leur a répondu de façon plutôt impolie lorsqu'ils lui ont adressé la parole. À l'aide des clues ci-dessous, pouvez-vous trouver quel jour chacun des visiteurs est venu, ce qu'il a dit à mon perroquet et ce que celui-ci leur a répondu?</intro>
+    <style>
+        .intro: {
+            line-height: 1.5;
+        }
+        .avant: {
+            position:absolute;
+            bottom: 2in;
+            right:.5in;
+            width:5in;
+        }
+    </style>
+    <props>
+        <prop id="jour" name="Jour">
+            <choice id="lundi" abbr="Lundi">Lundi</choice>
+            <choice id="mardi" abbr="Mardi">Mardi</choice>
+            <choice id="mercredi" abbr="Mercredi">Mercredi</choice>
+            <choice id="jeudi" abbr="Jeudi">Jeudi</choice>
+            <choice id="vendredi" abbr="Vendredi">Vendredi</choice>
+        </prop>
+        <prop id="reponse" name="Réponse">
+            <choice id="disparait" abbr="Disparaît!">Disparaît!</choice>
+            <choice id="fouslecamp" abbr="Fous le camp!">Fous le camp!</choice>
+            <choice id="ecrase" abbr="Écrase!">Écrase!</choice>
+            <choice id="pasmoi" abbr="Pas moi!">Pas moi!</choice>
+            <choice id="etpuis" abbr="Et puis?">Et puis?</choice>
+        </prop>
+        <prop id="salutation" name="Salutation">
+            <choice id="bonjour" abbr="Bonjour!">Bonjour!</choice>
+            <choice id="allo" abbr="Allo!">Allo!</choice>
+            <choice id="cava" abbr="Ça va?">Ça va?</choice>
+            <choice id="contentdetevoir" abbr="Content de te voir!">Content de te voir!</choice>
+            <choice id="tuesbienjoli" abbr="Tu es bien! joli!">Tu es bien! joli!</choice>
+        </prop>
+        <prop id="visiteur" name="Visiteur">
+            <choice id="tante" abbr="T" attribute="gender=female">Tante</choice>
+            <choice id="electricien" abbr="É" attribute="gender=male">Électricien</choice>
+            <choice id="plombier" abbr="P" attribute="gender=male">Plombier</choice>
+            <choice id="reparateur" abbr="R" attribute="gender=male">Réparateur</choice>
+            <choice id="soeur" abbr="S" attribute="gender=female">Soeur</choice>
+        </prop>
+    </props>
+    <clues>
+        <clue>
+            <part>L'<ref prop="visiteur">homme</ref> qui est venu à la maison le <ref prop="jour.mercredi">mercredi</ref></part>
+            <part>a salué le perroquet d'un joyeux <ref prop="salutation.bonjour">Bonjour!</ref>;</part>
+            <part>L'<ref prop="visiteur.electricien">électricien</ref> est venu le <ref prop="jour">lendemain</ref>.</part>
+        </clue>
+        <clue>
+            <part><ref prop="reponse.pasmoi">Pas moi!</ref> est la réponse qu'a servie le perroquet lorsqu'on lui a dit: <ref prop="salutation.contentdetevoir">Content de te voir!</ref></part>
+        </clue>
+        <clue>
+            <part>Ce n'est pas au <ref prop="visiteur.reparateur">réparateur de télé</ref> que le perroquet a répondu: <ref prop="reponse.fouslecamp">Fous le camp!</ref></part>
+        </clue>
+        <clue>
+            <part>Le <ref prop="visiteur.plombier">plombier</ref> a salué l'animal en disant: <ref prop="salutation.allo">Allo!</ref>,</part>
+            <part>mais <ref prop="visiteur.plombier">il</ref> n'est pas le visiteur du <ref prop="jour.mardi">mardi</ref>.</part>
+            <part><ref prop="jour.mardi">Ce dernier</ref> s'est fait répondre: <ref prop="reponse.ecrase">Écrase!</ref></part>
+        </clue>
+        <clue>
+            <part>Ma <ref prop="visiteur.soeur">soeur</ref>, qui n'est pas venue le <ref prop="jour.lundi">lundi</ref>,</part>
+            <part>s'est adressée tout gentiment à l'oiseau qui lui a répondu: <ref prop="reponse.etpuis">Et puis?</ref></part>
+        </clue>
+        <clue>
+            <part>Le visiteur du <ref prop="jour.vendredi">vendredi</ref> ne s'est pas adressé à l'animal en disant: <ref prop="salutation.tuesbienjoli">Tu es bien! joli!</ref></part>
+        </clue>
+    </clues>
+    <solution>
+        <case recap="Le mercredi, l'Électricien a dit 'Bonjour!' au perroquet et ce dernier a répondu 'Pas moi!'">
+            <prop prop="jour" choice="mercredi" />
+            <prop prop="visiteur" choice="electricien" />
+            <prop prop="salutation" choice="bonjour" />
+            <prop prop="reponse" choice="pasmoi" />
+        </case>
+        <case recap="Le lundi, la Soeur a dit 'Content de te voir!' au perroquet et ce dernier a répondu 'Et puis?'">
+            <prop prop="jour" choice="lundi" />
+            <prop prop="visiteur" choice="soeur" />
+            <prop prop="salutation" choice="contentdetevoir" />
+            <prop prop="reponse" choice="etpuis" />
+        </case>
+        <case recap="Le jeudi, le Réparateur a dit 'Écrase!' au perroquet et ce dernier a répondu 'Allo!'">
+            <prop prop="jour" choice="jeudi" />
+            <prop prop="visiteur" choice="reparateur" />
+            <prop prop="salutation" choice="allo" />
+            <prop prop="reponse" choice="ecrase" />
+        </case>
+        <case recap="Le mardi, le Plombier a dit 'Allo!' au perroquet et ce dernier a répondu 'Écrase!'">
+            <prop prop="jour" choice="mardi" />
+            <prop prop="visiteur" choice="plombier" />
+            <prop prop="salutation" choice="allo" />
+            <prop prop="reponse" choice="ecrase" />
+        </case>
+        <case recap="Le vendredi, la Tante a dit 'Tu es bien! joli!' au perroquet et ce dernier a répondu 'Fous le camp!'">
+            <prop prop="jour" choice="vendredi" />
+            <prop prop="visiteur" choice="tante" />
+            <prop prop="salutation" choice="tuesbienjoli" />
+            <prop prop="reponse" choice="fouslecamp" />
+        </case>
+    </solution>
+</enigma>
