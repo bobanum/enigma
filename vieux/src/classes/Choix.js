@@ -1,6 +1,6 @@
 export default class Choix {
 	_libele = "";
-	groupe = null;
+	prop = null;
 	constructor(libele) {
 		this.libele = libele;
 	}
@@ -14,8 +14,8 @@ export default class Choix {
 		let choix = new this(json.libele);
 		return choix;
 	}
-	setGroupe(groupe) {
-		// this.groupe = groupe;
+	setProp(prop) {
+		// this.prop = prop;
 		return this;
 	}
 }

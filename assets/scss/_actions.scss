@@ -1,0 +1,83 @@
+.actions {
+    font-size: smaller;
+    background-color: #222;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 1em 0 0 1em;
+    position: sticky;
+    top: 1em;
+    bottom: 1em;
+    b {
+        font-size: 1.5em;
+        margin: -.25em 0;
+        display: inline-flex;
+        width: 1em;
+        height: 1em;
+        text-align: center;
+        background-color: #fff;
+        color: #000;
+        line-height: 1;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin: 0 .5ch;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: .25em;
+    }
+    li {
+        display: flex;
+        gap: 1ch;
+        padding: 0.5em;
+        background-color: #fff1;
+        border-radius: .5em;
+        align-items: center;
+        &.hover, &:hover {
+            background-color: #ff03;
+        }
+        span:first-child {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            flex-grow: 1;
+            order: 1;
+            padding: 0 2ch;
+            border-left: 1px solid #444;
+            align-items: center;
+            * {
+                white-space: nowrap;
+            }
+            i:last-child {
+                text-align: right;
+            }
+        }
+        &.disabled span:first-child {
+            opacity: .5;
+        }
+        span:not(:first-child) {
+            width: 1.3em;
+            height: 1.3em;
+            font-family: 'Material Icons';
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        span.delete::before {
+            content: "delete";
+        }
+        span.visibility::before {
+            content: "visibility";
+        }
+        &.disabled span.visibility::before {
+            content: "visibility_off";
+        }
+    }
+}
+.cell.marque {
+    border: 3px solid blue;
+}

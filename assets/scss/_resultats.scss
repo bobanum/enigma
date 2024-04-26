@@ -1,0 +1,29 @@
+.resultats table {
+    border: 2pt solid black;
+    border-collapse: collapse;
+    background-color: #fffc;
+    position: relative;
+    &.afficher {
+        [data-solution]::before {
+            content: attr(data-solution);
+            font-family: 'Caveat', cursive;
+            line-height: 1;
+            color: #f00;
+        }
+    }
+    thead {
+        background-color: hsl(0, 0%, 90%);
+        th {
+            min-width: 15ch;
+        }
+    }
+    th, td {
+        border: 1pt solid black;
+        padding: 0;
+        text-align: center;
+    }
+    tbody th {
+        // text-align: inherit;
+        font-weight: normal;
+    }
+}

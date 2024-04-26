@@ -1,0 +1,21 @@
+#app {
+	height: 100%;
+	> * > h1 {
+		padding: .25rem .5rem;
+		display: flex;
+		align-items: center;
+		gap: .5em;
+		background-color: hsl(var(--h), var(--s), var(--l));
+		color: white;
+		font-size: 1.2em;
+		> a.material-icons-outlined {
+			font-size: 1.5em;
+			padding: .25em;
+			margin: -.25em;
+		}
+		> span {
+			line-height: .9em;
+			padding-bottom: .1em;
+		}
+	}
+}

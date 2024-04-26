@@ -3,7 +3,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="../enigma.xsd"
 title="Boîte de Pandore" 
 reference="Le cube de jeux. #171" 
-image="img/pandore.svg">
+image="img/derek.svg">
 	<intro>
 		Pandore Persimmons est l'animateur d'un jeu questionnaire durant lequel les concurrents méritent le droit d'ouvrir une des boites que l'on voit dans l'illustration. Le contenu des boites peut être très intéressant ou... nul. Pandore essaie de convaincre les participants d'abandonner leur chance d'ouvrir une boite en leur offrant de l'argent. Cette fois-ci, ça n'a pas marché. A l'aide des indices ci-dessous, trouvez l'ordre dans lequel les concurrents ouvriront les boites, quelle boite ils ouvriront et ce qu'ils gagneront.
 	</intro>

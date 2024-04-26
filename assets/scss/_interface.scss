@@ -1,0 +1,17 @@
+#__nuxt {
+	display: grid;
+	grid-template-rows: auto auto 1fr auto;
+
+}
+
+header,
+footer {
+	display: flex;
+	padding: 0.5em 1em;
+	align-items: center;
+	gap: 0.5em;
+	background-color: hsl(var(--h), var(--s), 20%);
+	color: hsl(var(--h), var(--s), 100%);
+	font-weight: bold;
+}
+@import "header";

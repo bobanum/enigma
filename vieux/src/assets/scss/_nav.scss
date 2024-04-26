@@ -13,8 +13,8 @@ nav {
 				padding: .5em 1em;
 				text-decoration: none;
 				&:hover {
-					color: hsl(calc(var(--hue) - 140), 100%, 50%);
-					background-color: hsl(var(--hue), var(--sat), 30%);
+					color: hsl(calc(var(--h) - 140), 100%, 50%);
+					background-color: hsl(var(--h), var(--s), 30%);
 				}
 			}
 		}

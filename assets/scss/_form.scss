@@ -1,0 +1,27 @@
+form {
+	margin: 1rem;
+	padding: 1rem;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-gap: 0.25rem .5rem;
+
+	> div {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1 / -1;
+
+		&:last-child {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+textarea,
+select,
+input {
+	font: inherit;
+}

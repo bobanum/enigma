@@ -14,17 +14,17 @@
    min-height: 100%;
    > header {
       grid-area: header;
-      background-color: hsl(var(--hue), var(--sat), var(--lum));
+      background-color: hsl(var(--h), var(--s), var(--l));
       color: white;
    }
    > nav {
       grid-area: nav;
-      background-color: hsl(var(--hue), var(--sat), calc(var(--lum) * .5));
+      background-color: hsl(var(--h), var(--s), calc(var(--l) * .5));
       color: white;
    }
    > main {
       grid-area: main;
-      background-color: hsl(var(--hue), var(--sat), calc(var(--lum) * .75));
+      background-color: hsl(var(--h), var(--s), calc(var(--l) * .75));
       color: white;
    }
    

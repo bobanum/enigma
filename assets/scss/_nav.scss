@@ -1,0 +1,19 @@
+nav {
+	background-color: hsl(var(--h), var(--s), 40%);
+	color: white;
+	padding: .5em 1em;
+	> ul {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	li {
+		background-color: hsl(var(--h), var(--s), 50%);
+		padding: .5em 1em;
+		border-radius: 5px;
+		&:hover {
+			background-color: hsl(var(--h), var(--s), 60%);
+			color: yellow;
+		}
+	}
+}

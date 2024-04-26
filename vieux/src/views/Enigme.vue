@@ -16,61 +16,61 @@
 					<li>La deuxième sortie de notre explorateur a duré seulement 15 minutes.</li>
 				</ol>
 			</div>
-			<div class="tableau" style="--nb-elements: 5; grid-auto-columns: 2pt auto auto auto auto auto; grid-auto-rows: 2pt auto auto auto auto auto;">
+			<div class="tableau" style="--nb-choices: 5; grid-auto-columns: 2pt auto auto auto auto auto; grid-auto-rows: 2pt auto auto auto auto auto;">
 				<div class="entete-h">
-					<div class="groupe" style="--gc: 4;">
+					<div class="prop" style="--gc: 4;">
 						<h1>Sortie</h1>
-						<div class="element" style="--c: 0;">Première</div>
-						<div class="element" style="--c: 1;">Deuxième</div>
-						<div class="element" style="--c: 2;">Troisième</div>
-						<div class="element" style="--c: 3;">Quatrième</div>
-						<div class="element" style="--c: 4;">Cinquième</div>
+						<div class="choice" style="--c: 0;">Première</div>
+						<div class="choice" style="--c: 1;">Deuxième</div>
+						<div class="choice" style="--c: 2;">Troisième</div>
+						<div class="choice" style="--c: 3;">Quatrième</div>
+						<div class="choice" style="--c: 4;">Cinquième</div>
 					</div>
-					<div class="groupe" style="--gc: 10;">
+					<div class="prop" style="--gc: 10;">
 						<h1>Lieu</h1>
-						<div class="element" style="--c: 0;">Plage</div>
-						<div class="element" style="--c: 1;">Champ</div>
-						<div class="element" style="--c: 2;">Jardin d'un ami</div>
-						<div class="element" style="--c: 3;">Son jardin</div>
-						<div class="element" style="--c: 4;">Parc</div>
+						<div class="choice" style="--c: 0;">Plage</div>
+						<div class="choice" style="--c: 1;">Champ</div>
+						<div class="choice" style="--c: 2;">Jardin d'un ami</div>
+						<div class="choice" style="--c: 3;">Son jardin</div>
+						<div class="choice" style="--c: 4;">Parc</div>
 					</div>
-					<div class="groupe" style="--gc: 16;">
+					<div class="prop" style="--gc: 16;">
 						<h1>Objet</h1>
-						<div class="element" style="--c: 0;">Capsule</div>
-						<div class="element" style="--c: 1;">Poignée</div>
-						<div class="element" style="--c: 2;">Clé anglaise</div>
-						<div class="element" style="--c: 3;">Cuillère</div>
-						<div class="element" style="--c: 4;">Jouet</div>
+						<div class="choice" style="--c: 0;">Capsule</div>
+						<div class="choice" style="--c: 1;">Poignée</div>
+						<div class="choice" style="--c: 2;">Clé anglaise</div>
+						<div class="choice" style="--c: 3;">Cuillère</div>
+						<div class="choice" style="--c: 4;">Jouet</div>
 					</div>
 				</div>
 				<div class="entete-v">
-					<div class="groupe" style="--gr: 4;">
+					<div class="prop" style="--gr: 4;">
 						<h1>Durée</h1>
-						<div class="element" style="--r: 0;">15 minutes</div>
-						<div class="element" style="--r: 1;">20 minutes</div>
-						<div class="element" style="--r: 2;">25 minutes</div>
-						<div class="element" style="--r: 3;">35 minutes</div>
-						<div class="element" style="--r: 4;">40 minutes</div>
+						<div class="choice" style="--r: 0;">15 minutes</div>
+						<div class="choice" style="--r: 1;">20 minutes</div>
+						<div class="choice" style="--r: 2;">25 minutes</div>
+						<div class="choice" style="--r: 3;">35 minutes</div>
+						<div class="choice" style="--r: 4;">40 minutes</div>
 					</div>
-					<div class="groupe" style="--gr: 10;">
+					<div class="prop" style="--gr: 10;">
 						<h1>Objet</h1>
-						<div class="element" style="--r: 0;">Capsule</div>
-						<div class="element" style="--r: 1;">Poignée</div>
-						<div class="element" style="--r: 2;">Clé anglaise</div>
-						<div class="element" style="--r: 3;">Cuillère</div>
-						<div class="element" style="--r: 4;">Jouet</div>
+						<div class="choice" style="--r: 0;">Capsule</div>
+						<div class="choice" style="--r: 1;">Poignée</div>
+						<div class="choice" style="--r: 2;">Clé anglaise</div>
+						<div class="choice" style="--r: 3;">Cuillère</div>
+						<div class="choice" style="--r: 4;">Jouet</div>
 					</div>
-					<div class="groupe" style="--gr: 16;">
+					<div class="prop" style="--gr: 16;">
 						<h1>Lieu</h1>
-						<div class="element" style="--r: 0;">Plage</div>
-						<div class="element" style="--r: 1;">Champ</div>
-						<div class="element" style="--r: 2;">Jardin d'un ami</div>
-						<div class="element" style="--r: 3;">Son jardin</div>
-						<div class="element" style="--r: 4;">Parc</div>
+						<div class="choice" style="--r: 0;">Plage</div>
+						<div class="choice" style="--r: 1;">Champ</div>
+						<div class="choice" style="--r: 2;">Jardin d'un ami</div>
+						<div class="choice" style="--r: 3;">Son jardin</div>
+						<div class="choice" style="--r: 4;">Parc</div>
 					</div>
 				</div>
 				<div class="coches">
-					<div class="groupe" style="--gr: 4; --gc: 4;" data-gauche="0" data-haut="3">
+					<div class="prop" style="--gr: 4; --gc: 4;" data-gauche="0" data-haut="3">
 						<div class="cell" style="--r: 0; --c: 0;" data-gauche="0" data-haut="0" data-coord="0:0,3:0"></div>
 						<div class="cell" style="--r: 0; --c: 1;" data-gauche="0" data-haut="1" data-coord="0:0,3:1"></div>
 						<div class="cell" style="--r: 0; --c: 2;" data-gauche="0" data-haut="2" data-coord="0:0,3:2"></div>
@@ -97,7 +97,7 @@
 						<div class="cell" style="--r: 4; --c: 3;" data-gauche="4" data-haut="3" data-coord="0:4,3:3"></div>
 						<div class="cell" style="--r: 4; --c: 4;" data-gauche="4" data-haut="4" data-coord="0:4,3:4"></div>
 					</div>
-					<div class="groupe" style="--gr: 4; --gc: 10;" data-gauche="0" data-haut="2">
+					<div class="prop" style="--gr: 4; --gc: 10;" data-gauche="0" data-haut="2">
 						<div class="cell" style="--r: 0; --c: 0;" data-gauche="0" data-haut="0" data-coord="0:0,2:0"></div>
 						<div class="cell" style="--r: 0; --c: 1;" data-gauche="0" data-haut="1" data-coord="0:0,2:1"></div>
 						<div class="cell" style="--r: 0; --c: 2;" data-gauche="0" data-haut="2" data-coord="0:0,2:2"></div>
@@ -124,7 +124,7 @@
 						<div class="cell" style="--r: 4; --c: 3;" data-gauche="4" data-haut="3" data-coord="0:4,2:3"></div>
 						<div class="cell" style="--r: 4; --c: 4;" data-gauche="4" data-haut="4" data-coord="0:4,2:4"></div>
 					</div>
-					<div class="groupe" style="--gr: 4; --gc: 16;" data-gauche="0" data-haut="1">
+					<div class="prop" style="--gr: 4; --gc: 16;" data-gauche="0" data-haut="1">
 						<div class="cell" style="--r: 0; --c: 0;" data-gauche="0" data-haut="0" data-coord="0:0,1:0"></div>
 						<div class="cell" style="--r: 0; --c: 1;" data-gauche="0" data-haut="1" data-coord="0:0,1:1"></div>
 						<div class="cell" style="--r: 0; --c: 2;" data-gauche="0" data-haut="2" data-coord="0:0,1:2"></div>
@@ -151,7 +151,7 @@
 						<div class="cell" style="--r: 4; --c: 3;" data-gauche="4" data-haut="3" data-coord="0:4,1:3"></div>
 						<div class="cell" style="--r: 4; --c: 4;" data-gauche="4" data-haut="4" data-coord="0:4,1:4"></div>
 					</div>
-					<div class="groupe" style="--gr: 10; --gc: 4;" data-gauche="1" data-haut="3">
+					<div class="prop" style="--gr: 10; --gc: 4;" data-gauche="1" data-haut="3">
 						<div class="cell" style="--r: 0; --c: 0;" data-gauche="0" data-haut="0" data-coord="1:0,3:0"></div>
 						<div class="cell" style="--r: 0; --c: 1;" data-gauche="0" data-haut="1" data-coord="1:0,3:1"></div>
 						<div class="cell" style="--r: 0; --c: 2;" data-gauche="0" data-haut="2" data-coord="1:0,3:2"></div>
@@ -178,7 +178,7 @@
 						<div class="cell" style="--r: 4; --c: 3;" data-gauche="4" data-haut="3" data-coord="1:4,3:3"></div>
 						<div class="cell" style="--r: 4; --c: 4;" data-gauche="4" data-haut="4" data-coord="1:4,3:4"></div>
 					</div>
-					<div class="groupe" style="--gr: 10; --gc: 10;" data-gauche="1" data-haut="2">
+					<div class="prop" style="--gr: 10; --gc: 10;" data-gauche="1" data-haut="2">
 						<div class="cell" style="--r: 0; --c: 0;" data-gauche="0" data-haut="0" data-coord="1:0,2:0"></div>
 						<div class="cell" style="--r: 0; --c: 1;" data-gauche="0" data-haut="1" data-coord="1:0,2:1"></div>
 						<div class="cell" style="--r: 0; --c: 2;" data-gauche="0" data-haut="2" data-coord="1:0,2:2"></div>
@@ -205,7 +205,7 @@
 						<div class="cell" style="--r: 4; --c: 3;" data-gauche="4" data-haut="3" data-coord="1:4,2:3"></div>
 						<div class="cell" style="--r: 4; --c: 4;" data-gauche="4" data-haut="4" data-coord="1:4,2:4"></div>
 					</div>
-					<div class="groupe" style="--gr: 16; --gc: 4;" data-gauche="2" data-haut="3">
+					<div class="prop" style="--gr: 16; --gc: 4;" data-gauche="2" data-haut="3">
 						<div class="cell" style="--r: 0; --c: 0;" data-gauche="0" data-haut="0" data-coord="2:0,3:0"></div>
 						<div class="cell" style="--r: 0; --c: 1;" data-gauche="0" data-haut="1" data-coord="2:0,3:1"></div>
 						<div class="cell" style="--r: 0; --c: 2;" data-gauche="0" data-haut="2" data-coord="2:0,3:2"></div>
@@ -235,7 +235,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="resultats" style="--nb-elements: 5;">
+		<div class="resultats" style="--nb-choices: 5;">
 			<h2>Résultats</h2>
 			<table>
 				<tbody>
