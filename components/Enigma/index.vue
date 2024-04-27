@@ -23,11 +23,18 @@ import { Property } from '~/src/Property.js';
 const props = defineProps({
 	enigma: Object
 });
-const enigma = reactive({
-	title: computed(() => props.enigma.getAttribute('title')),
-	intro: computed(() => props.enigma.querySelector('intro')?.innerHTML),
-	image: computed(() => props.enigma.getAttribute('image')),
-	clues: computed(() => props.enigma.querySelector('clues')?.children),
-	properties: computed(() => [...props.enigma.querySelector('props')?.children||[]].map(p => Property.from(p))),
-});
+console.log(props.enigma);
+// const enigma = reactive({
+// 	title: computed(() => props.enigma.getAttribute('title')),
+// 	intro: computed(() => props.enigma.querySelector('intro')?.innerHTML),
+// 	image: computed(() => props.enigma.getAttribute('image')),
+// 	clues: computed(() => props.enigma.querySelector('clues')?.children),
+// 	properties: [],
+// });
+// enigma.properties = [...props.enigma.querySelector('props').children].map(p => Property.from(p));
+// enigma.properties.forEach((p, i) => {
+// 	p.choices.forEach(c => {
+// 		c.addCellProperty(...enigma.properties.slice(i + 1))}
+// 	);
+// });
 </script>

@@ -4,6 +4,7 @@
 	</main>
 </template>
 <script setup>
+import EnigmaClass from '~/src/Enigma.js';
 const enigma = ref(null);
 onMounted(() => {
   fetch('/data/pandore.xml').then(response => response.text()).then(xmlString => {
@@ -12,7 +13,7 @@ onMounted(() => {
 	  
 	  // Parse the XML string
 	  const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-	  enigma.value = xmlDoc.firstChild;
+	  enigma.value = EnigmaClass.from(xmlDoc.firstChild);
   });
 });
 </script>

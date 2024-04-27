@@ -2,29 +2,30 @@
 	<div class="grid" :style="{ '--nb-props': properties.length, '--nb-choices': nbChoices }">
 		<div class="corner"></div>
 		<header class="top">
-			<div class="prop" v-for="i in properties.length - 1" :style="{ '--prop': properties.length - i - 1 }">
-				<h1>{{ properties[properties.length - i].name }}</h1>
-				<div class="choice" v-for="choice, j in properties[properties.length - i].choices" :style="{ '--choice': j }" v-html="choice.text"></div>
+			<div class="prop" v-for="prop in properties.slice(1).reverse()">
+				<h1>{{ prop.name }}</h1>
+				<div class="choice" v-for="choice in prop.choices" v-html="choice.text"></div>
 			</div>
 		</header>
 		<header class="left">
-			<div class="prop" v-for="i in properties.length - 1" :style="{ '--prop': i }">
-				<h1>{{ properties[i - 1].name }}</h1>
-				<div class="choice" v-for="choice, j in properties[i - 1].choices" :style="{ '--choice': j }" v-html="choice.text"></div>
+			<div class="prop" v-for="prop in properties.slice(0, -1)">
+				<h1>{{ prop.name }}</h1>
+				<div class="choice" v-for="choice, j in prop.choices" v-html="choice.text"></div>
 			</div>
 		</header>
 		<div class="cells">
-			<template v-for="i in properties.length - 1">
-				<template v-for="j in properties.length - i">
-					<div class="group" :data-prop-top="i">
-						<template v-for="v in nbChoices">
-							<template v-for="w in nbChoices">
-								<EnigmaCell :propTop="i" :propLeft="j" :top="v" :left="w" />
+			<template v-for="propLeft, i in properties.slice(0, -1)">
+				<template v-for="propTop in properties.slice(i + 1).reverse()">
+					<div class="group">
+						<template v-for="choiceLeft in propLeft.choices">
+							<template v-for="cell in choiceLeft.cells[propTop.id]">
+								<EnigmaCell :cell="cell">
+								</EnigmaCell>
 							</template>
 						</template>
 					</div>
 				</template>
-				<div class="group" v-for="j in i - 1"></div>
+				<div class="group" v-for="j in i"></div>
 			</template>
 		</div>
 	</div>
@@ -35,8 +36,8 @@
 const props = defineProps({
 	properties: Object,
 });
-const properties = ref([...props.properties]);
-console.log(properties.value[0]);
+const properties = ref(props.properties);
+console.log(props.properties, properties.value);
 const nbChoices = computed(() => properties.value[0].length);
 function coordinates(cell, string = true) {
 	var gG = cell.parentNode.dataset.gauche;
@@ -62,10 +63,10 @@ const evt = {
 			console.log(coord);
 			// if (e.ctrlKey) {
 			// 	var op = "=";
-			// 	this.cocher(e.target, false);
+			// 	this.check(e.target, false);
 			// } else {
 			// 	var op = "≠";
-			// 	this.barrer(e.target, false);
+			// 	this.strike(e.target, false);
 			// }
 			// this.trouverComplets();
 			// var code = `${op};${coord}`;
@@ -84,31 +85,6 @@ const evt = {
 		if (!li) return;
 		li.classList.remove("hover");
 	},
-}
-function barrer(cell, auto = true) {
-	if (cell.classList.contains("O") || cell.classList.contains("X")) return;
-	cell.classList.add("X");
-	if (auto) {
-		cell.classList.add("auto");
-	}
-	var coord = this.coord(cell, false);
-	// ON ELIMINE LES BARREE
-	this.eliminerCorrespondantsBarre(coord);
-	// ON COCHE LES COCHEES
-}
-function cocher(cell, auto = true) {
-	if (cell.classList.contains("O") || cell.classList.contains("X")) return;
-	cell.classList.add("O");
-	if (auto) {
-		cell.classList.add("auto");
-	}
-	var coord = this.coord(cell, false);
-	// ON ÉLIMINE LA CASE
-	this.eliminerVoisins(coord);
-	// ON ELIMINE LES BARREE
-	this.eliminerCorrespondantsCoche(coord);
-	// ON COCHE LES COCHEES
-
-}
+};
 
 </script>

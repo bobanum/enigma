@@ -42,12 +42,12 @@ image="img/derek.svg">
 	</style>
 	<props>
 		<prop id="boite" name="Boite" ordered="true">
-			<choice id="1" abbr="1">1</choice>
-			<choice id="2" abbr="2">2</choice>
-			<choice id="3" abbr="3">3</choice>
-			<choice id="4" abbr="4">4</choice>
-			<choice id="5" abbr="5">5</choice>
-			<choice id="6" abbr="6">6</choice>
+			<choice id="no1" abbr="no1">1</choice>
+			<choice id="no2" abbr="no2">2</choice>
+			<choice id="no3" abbr="no3">3</choice>
+			<choice id="no4" abbr="no4">4</choice>
+			<choice id="no5" abbr="no5">5</choice>
+			<choice id="no6" abbr="no6">6</choice>
 		</prop>
 		<prop id="concurrents" name="Concurrents">
 			<choice id="jim" abbr="J">Jim</choice>
@@ -60,10 +60,10 @@ image="img/derek.svg">
 		<prop id="prix" name="Prix" ordered="true">
 			<choice id="savon" abbr="S">Savon</choice>
 			<choice id="cuillere" abbr="C">Cuillère</choice>
-			<choice id="50" abbr="50¢">0,50$</choice>
-			<choice id="100" abbr="100">100$</choice>
-			<choice id="1k" abbr="1k">1000$</choice>
-			<choice id="5k" abbr="5k">5000$</choice>
+			<choice id="a50" abbr="50¢">0,50$</choice>
+			<choice id="a100" abbr="100">100$</choice>
+			<choice id="a1k" abbr="1k">1000$</choice>
+			<choice id="a5k" abbr="5k">5000$</choice>
 		</prop>
 		<prop id="ordre" name="Ordre" ordered="true">
 			<choice id="premier" abbr="1er">Premier</choice>
@@ -76,35 +76,34 @@ image="img/derek.svg">
 	</props>
 	<clues>
 		<clue>
-			<part>L'<ref prop="ordre">ordre des concurrents</ref> ne correspond jamais au <ref prop="numero">numéro de la boite</ref></part>
+			<part>L'<ref prop="ordre">ordre des concurrents</ref> ne correspond jamais au <ref prop="numero">numéro de la boite</ref>.</part>
 		</clue>
 		<clue>
-			<part><ref prop="concurrents.lynn">Lynne</ref>, qui a ouvert la <ref prop="ordre.2">deuxième boite</ref>,</part>
-			
-			<part>a gagné de l'<ref prop="prix">argent</ref>,</part>
-			<part>mais moins que <ref prop="concurrents.sharon">Sharon</ref></part>
-			<part>dont le tour précédait celui de <ref prop="concurrents.lynn">Lynne</ref></part>
+			<part><ref prop="concurrents.lynn">Lynne</ref>, qui a ouvert la <ref prop="ordre.2">deuxième boite</ref>, </part>
+			<part>a gagné de l'<ref prop="prix">argent</ref>, </part>
+			<part>mais moins que <ref prop="concurrents.sharon">Sharon</ref> </part>
+			<part>dont le tour précédait celui de <ref prop="concurrents.lynn">Lynne</ref> </part>
 			<part>mais n'était pas  <ref prop="ordre">immédiatementavant</ref>.</part>
 		</clue>
 		<clue>
-			<part><ref prop="concurrents.michael">Michael</ref>, dont le tour est venu après celui du gagnant de <ref prop="prix.100">100$</ref>,</part>
+			<part><ref prop="concurrents.michael">Michael</ref>, dont le tour est venu après celui du gagnant de <ref prop="prix.100">100$</ref>, </part>
 			<part>a ouvert une boîte à droite de celle du <ref prop="prix.5k">gagnant</ref>, mais pas <ref prop="ordre">juste à côté</ref>.</part>
 		</clue>
 		<clue>
-			<part>La boite contenant un morceau de <ref prop="prix.savon">savon</ref> se trouvait juste à gauche de celle ouverte par le <ref prop="ordre.5">cinquième concurrent</ref>.</part>
+			<part>La boite contenant un morceau de <ref prop="prix.savon">savon</ref> se trouvait juste à gauche de celle ouverte par le <ref prop="ordre.5">cinquième concurrent</ref>. </part>
 			<part>La boite choisie par <ref prop="concurrents.jim">Jim</ref> était à gauche que ces deux boîtes.</part>
 		</clue>
 		<clue>
-			<part>Le tour du concurrent qui a gagné une <ref prop="prix.cuillere">cuillère de bois</ref> était juste avant celui du concurrent qui a gagné <ref prop="prix.50">0,50$</ref>.</part>
+			<part>Le tour du concurrent qui a gagné une <ref prop="prix.cuillere">cuillère de bois</ref> était juste avant celui du concurrent qui a gagné <ref prop="prix.50">0,50$</ref>. </part>
 			<part>La boite avec la cuillere était juste à droite de celle contenant <ref prop="prix.1000">1000$</ref>.</part>
 		</clue>
 		<clue>
-			<part><ref prop="concurrents.susanne">Susanne</ref> a ouvert la boite juste a droite de celle choisie par <ref prop="concurrents.robert">Robert</ref></part>
+			<part><ref prop="concurrents.susanne">Susanne</ref> a ouvert la boite juste a droite de celle choisie par <ref prop="concurrents.robert">Robert</ref> </part>
 			<part>qui a joué juste après elle.</part>
 		</clue>
 		<clue>
-			<part>Les <ref prop="concurrents">hommes</ref> n'ont pas ouvert de boites <ref prop="ordre">adjacentes</ref>.</part>
-			<part>Le gagnant de <ref prop="prix.5k">5000$</ref> est la seule personne dont la boite se trouvait à droite de celle d'un <ref prop="concurrents">homme</ref></part>
+			<part>Les <ref prop="concurrents">hommes</ref> n'ont pas ouvert de boites <ref prop="ordre">adjacentes</ref>. </part>
+			<part>Le gagnant de <ref prop="prix.5k">5000$</ref> est la seule personne dont la boite se trouvait à droite de celle d'un <ref prop="concurrents">homme</ref> </part>
 			<part>et à gauche de celle d'une <ref prop="concurrents">femme</ref>.</part>
 		</clue>
 	</clues>

@@ -207,10 +207,10 @@ export default class Enigme {
 
                         if (e.ctrlKey) {
                             var op = "=";
-                            this.cocher(e.target, false);
+                            this.check(e.target, false);
                         } else {
                             var op = "≠";
-                            this.barrer(e.target, false);
+                            this.strike(e.target, false);
                         }
                         this.trouverComplets();
                         var code = `${op};${coord}`;
@@ -270,14 +270,14 @@ export default class Enigme {
             if (action[0] === "-") return;
             var cell = this.cell(action.slice(2));
             if (action[0] === "=") {
-                this.cocher(cell, false);
+                this.check(cell, false);
             } else {
-                this.barrer(cell, false);
+                this.strike(cell, false);
             }
             this.trouverComplets();
         });
     }
-    static barrer(cell, auto = true) {
+    static strike(cell, auto = true) {
         if (cell.classList.contains("O") || cell.classList.contains("X")) return;
         cell.classList.add("X");
         if (auto) {
@@ -288,7 +288,7 @@ export default class Enigme {
         this.eliminerCorrespondantsBarre(coord);
         // ON COCHE LES COCHEES
     }
-    static cocher(cell, auto = true) {
+    static check(cell, auto = true) {
         if (cell.classList.contains("O") || cell.classList.contains("X")) return;
         cell.classList.add("O");
         if (auto) {
@@ -309,7 +309,7 @@ export default class Enigme {
         selecteur += `, ${selecteurG}>.cell[data-haut="${coord.h}"]${selecteurX}`;
         var cells = document.querySelectorAll(selecteur);
         cells.forEach(cell => {
-            this.barrer(cell);
+            this.strike(cell);
         });
     }
     static mix1(c1, c2) {
@@ -349,9 +349,9 @@ export default class Enigme {
             }
             var cell3 = this.cell(coord3);
             if (cell.classList.contains("X")) {
-                this.barrer(cell3);
+                this.strike(cell3);
             } else if (cell.classList.contains("O")) {
-                this.cocher(cell3);
+                this.check(cell3);
             }
         });
         var selecteur = `.groupe[data-haut="${coord.gG}"]:not([data-gauche="${coord.gH}"])`;
@@ -362,9 +362,9 @@ export default class Enigme {
             var coord3 = this.mix2(coord2, coord);
             var cell3 = this.cell(coord3);
             if (cell.classList.contains("X")) {
-                this.barrer(cell3);
+                this.strike(cell3);
             } else if (cell.classList.contains("O")) {
-                this.cocher(cell3);
+                this.check(cell3);
             }
         });
         var selecteur = `.groupe[data-haut="${coord.gH}"]:not([data-gauche="${coord.gG}"])`;
@@ -379,9 +379,9 @@ export default class Enigme {
             }
             var cell3 = this.cell(coord3);
             if (cell.classList.contains("X")) {
-                this.barrer(cell3);
+                this.strike(cell3);
             } else if (cell.classList.contains("O")) {
-                this.cocher(cell3);
+                this.check(cell3);
             }
         });
         var selecteur = `.groupe[data-gauche="${coord.gH}"]:not([data-haut="${coord.gG}"])`;
@@ -392,9 +392,9 @@ export default class Enigme {
             var coord3 = this.mix2(coord, coord2);
             var cell3 = this.cell(coord3);
             if (cell.classList.contains("X")) {
-                this.barrer(cell3);
+                this.strike(cell3);
             } else if (cell.classList.contains("O")) {
-                this.cocher(cell3);
+                this.check(cell3);
             }
         });
     }
@@ -410,7 +410,7 @@ export default class Enigme {
                 var coord3 = this.mix1(coord, coord2);
             }
             var cell3 = this.cell(coord3);
-            this.barrer(cell3);
+            this.strike(cell3);
         });
         var selecteur = `.groupe[data-haut="${coord.gG}"]:not([data-gauche="${coord.gH}"])`;
         selecteur += `>.cell.O[data-haut="${coord.g}"]`;
@@ -419,7 +419,7 @@ export default class Enigme {
             var coord2 = this.coord(cell, false);
             var coord3 = this.mix2(coord2, coord);
             var cell3 = this.cell(coord3);
-            this.barrer(cell3);
+            this.strike(cell3);
         });
         var selecteur = `.groupe[data-haut="${coord.gH}"]:not([data-gauche="${coord.gG}"])`;
         selecteur += `>.cell.O[data-haut="${coord.h}"]`;
@@ -432,7 +432,7 @@ export default class Enigme {
                 var coord3 = this.mix3(coord, coord2);
             }
             var cell3 = this.cell(coord3);
-            this.barrer(cell3);
+            this.strike(cell3);
         });
         var selecteur = `.groupe[data-gauche="${coord.gH}"]:not([data-haut="${coord.gG}"])`;
         selecteur += `>.cell.O[data-gauche="${coord.h}"]`;
@@ -441,7 +441,7 @@ export default class Enigme {
             var coord2 = this.coord(cell, false);
             var coord3 = this.mix2(coord, coord2);
             var cell3 = this.cell(coord3);
-            this.barrer(cell3);
+            this.strike(cell3);
         });
     }
     static trouverComplets() {
@@ -458,13 +458,13 @@ export default class Enigme {
                     console.log(colonne.length);
                     if (colonne.length === 1) {
                         modifie = true;
-                        this.cocher(colonne[0]);
+                        this.check(colonne[0]);
                     }
                     var rangee = [...groupe.querySelectorAll(`.cell[data-gauche="${i}"]:not(.X):not(.O)`)];
                     if (rangee.length === 1) {
                         console.log(rangee);
                         modifie = true;
-                        this.cocher(rangee[0]);
+                        this.check(rangee[0]);
                     }
                 }
             });
