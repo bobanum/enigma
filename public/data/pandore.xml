@@ -1,6 +1,6 @@
 <enigma 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="../enigma.xsd"
+xsi:noNamespaceSchemaLocation="enigma.xsd"
 title="Boîte de Pandore" 
 reference="Le cube de jeux. #171" 
 image="img/derek.svg">
@@ -41,6 +41,14 @@ image="img/derek.svg">
 		}
 	</style>
 	<props>
+		<prop id="boite" name="Boite" ordered="true">
+			<choice id="1" abbr="1">1</choice>
+			<choice id="2" abbr="2">2</choice>
+			<choice id="3" abbr="3">3</choice>
+			<choice id="4" abbr="4">4</choice>
+			<choice id="5" abbr="5">5</choice>
+			<choice id="6" abbr="6">6</choice>
+		</prop>
 		<prop id="concurrents" name="Concurrents">
 			<choice id="jim" abbr="J">Jim</choice>
 			<choice id="lynne" abbr="L">Lynne</choice>
@@ -49,7 +57,7 @@ image="img/derek.svg">
 			<choice id="sharon" abbr="Sh">Sharon</choice>
 			<choice id="susanne" abbr="Su">Suzanne</choice>
 		</prop>
-		<prop id="prix" name="Prix">
+		<prop id="prix" name="Prix" ordered="true">
 			<choice id="savon" abbr="S">Savon</choice>
 			<choice id="cuillere" abbr="C">Cuillère</choice>
 			<choice id="50" abbr="50¢">0,50$</choice>
@@ -57,15 +65,7 @@ image="img/derek.svg">
 			<choice id="1k" abbr="1k">1000$</choice>
 			<choice id="5k" abbr="5k">5000$</choice>
 		</prop>
-		<prop id="boite" name="Boite">
-			<choice id="1" abbr="1">1</choice>
-			<choice id="2" abbr="2">2</choice>
-			<choice id="3" abbr="3">3</choice>
-			<choice id="4" abbr="4">4</choice>
-			<choice id="5" abbr="5">5</choice>
-			<choice id="6" abbr="6">6</choice>
-		</prop>
-		<prop id="ordre" name="Ordre">
+		<prop id="ordre" name="Ordre" ordered="true">
 			<choice id="premier" abbr="1er">Premier</choice>
 			<choice id="deuxieme" abbr="2e">Deuxième</choice>
 			<choice id="troisieme" abbr="3e">Troisième</choice>

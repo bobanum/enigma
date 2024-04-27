@@ -1,6 +1,6 @@
 <template>
 	<div class="page">
-		<div v-if="enigma.image" class="extra avant"><img class="avant" :src="'/' + enigma.image"></div>
+		<!-- <div v-if="enigma.image" class="extra avant"><img class="avant" :src="'/' + enigma.image"></div> -->
 		<h1>Énigme : {{ enigma.title }}</h1>
 		<p class="intro" v-html="enigma.intro"></p>
 		<div class="colonnes">
