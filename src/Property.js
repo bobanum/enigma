@@ -2,12 +2,15 @@ import XMLObject from './XMLObject.js';
 
 export default class Property extends XMLObject {
 	ordered = false;
-	choices = [];
+	choices = {};
 	constructor(id, name, choices = []) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.addChoice(...choices);
+	}
+	toString() {
+		return this.id;
 	}
 	get length() {
 		return this.choices.length;
@@ -16,8 +19,14 @@ export default class Property extends XMLObject {
 		choices.forEach(choice => {
 			choice = Choice.from(choice);
 			choice.property = this;
-			this.choices.push(choice);
+			this.choices[choice.id] = choice;
 		});
+	}
+	addCellProperty(...properties) {
+		this.choices.forEach(choice => {
+			choice.addCellProperty(...properties);
+		});
+		return this;
 	}
 	static from(xmlElement) {
 		if (xmlElement instanceof Property) {
@@ -41,14 +50,18 @@ class Choice {
 		this.abbr = abbr;
 	}
 	toString() {
+		// return Object.keys(this.cells).length;
 		return `${this.property.id}.${this.id}`;
 	}
 	addCellProperty(...properties) {
 		properties.forEach(property => {
+			console.log(`${property} - ${this}`);
 			if (property === this.property) return;
-			const prop = this.cells[property.id] = {};
+			const cellsProp = this.cells[property.id] = {};
 			property.choices.forEach(choice => {
-				prop[choice.id] = new Cell(this, choice);
+				console.log(`${property}, ${choice}, ${this}`);
+				debugger;
+				cellsProp[choice.id] = new Cell(this, choice);
 			});
 		});
 	}

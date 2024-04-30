@@ -2,23 +2,25 @@
 	<div class="grid" :style="{ '--nb-props': properties.length, '--nb-choices': nbChoices }">
 		<div class="corner"></div>
 		<header class="top">
-			<div class="prop" v-for="prop in properties.slice(1).reverse()">
+			<div class="prop" v-for="prop in propsTop">
 				<h1>{{ prop.name }}</h1>
 				<div class="choice" v-for="choice in prop.choices" v-html="choice.text"></div>
 			</div>
 		</header>
 		<header class="left">
-			<div class="prop" v-for="prop in properties.slice(0, -1)">
+			<div class="prop" v-for="prop in propsLeft">
 				<h1>{{ prop.name }}</h1>
 				<div class="choice" v-for="choice, j in prop.choices" v-html="choice.text"></div>
 			</div>
 		</header>
 		<div class="cells">
-			<template v-for="propLeft, i in properties.slice(0, -1)">
-				<template v-for="propTop in properties.slice(i + 1).reverse()">
+			<template v-for="propLeft, i in propsLeft">
+				<template v-for="propTop in propsTop">
 					<div class="group">
 						<template v-for="choiceLeft in propLeft.choices">
+							<h5>{{choiceLeft}}</h5>
 							<template v-for="cell in choiceLeft.cells[propTop.id]">
+								<h6>6</h6>
 								<EnigmaCell :cell="cell">
 								</EnigmaCell>
 							</template>
@@ -36,9 +38,10 @@
 const props = defineProps({
 	properties: Object,
 });
-const properties = ref(props.properties);
-console.log(props.properties, properties.value);
-const nbChoices = computed(() => properties.value[0].length);
+const properties = props.properties;
+const nbChoices = computed(() => properties.choicesCount);
+const propsTop = computed(() => properties.values.slice(1).reverse());
+const propsLeft = computed(() => properties.values.slice(0, -1));
 function coordinates(cell, string = true) {
 	var gG = cell.parentNode.dataset.gauche;
 	var gH = cell.parentNode.dataset.haut;
