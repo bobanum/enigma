@@ -1,10 +1,12 @@
+import Collection from './Collection.js';
 import XMLObject from './XMLObject.js';
 
 export default class Property extends XMLObject {
 	ordered = false;
-	choices = {};
+	choices = null;
 	constructor(id, name, choices = []) {
 		super();
+		this.choices = new Collection();
 		this.id = id;
 		this.name = name;
 		this.addChoice(...choices);
@@ -19,12 +21,12 @@ export default class Property extends XMLObject {
 		choices.forEach(choice => {
 			choice = Choice.from(choice);
 			choice.property = this;
-			this.choices[choice.id] = choice;
+			this.choices.set(choice.id, choice);
 		});
 	}
-	addCellProperty(...properties) {
+	addCell4Property(...properties) {
 		this.choices.forEach(choice => {
-			choice.addCellProperty(...properties);
+			choice.addCell4Property(...properties);
 		});
 		return this;
 	}
@@ -43,28 +45,50 @@ export default class Property extends XMLObject {
 	}
 }
 class Choice {
-	cells = {};
+	cells = null;
 	constructor(id, text, abbr = "") {
+		this.cells = new Collection();
 		this.id = id;
 		this.text = text;
 		this.abbr = abbr;
 	}
 	toString() {
-		// return Object.keys(this.cells).length;
+		return this.path;
+	}
+	get path() {
 		return `${this.property.id}.${this.id}`;
 	}
-	addCellProperty(...properties) {
+	addCell4Property(...properties) {
 		properties.forEach(property => {
-			console.log(`${property} - ${this}`);
 			if (property === this.property) return;
-			const cellsProp = this.cells[property.id] = {};
-			property.choices.forEach(choice => {
-				console.log(`${property}, ${choice}, ${this}`);
-				debugger;
-				cellsProp[choice.id] = new Cell(this, choice);
-			});
+			const propCells = this.cells[property.id] = new Collection();
+			this.addCell4Choice(...property.choices.v());
+			// property.choices.forEach(choice => {
+			// 	const cell = new Cell(this, choice);
+			// 	console.log(`Cell ${property}, ${choice}, ${this}`);
+			// 	propCells[choice.id] = new Cell(this, choice);
+			// });
 		});
 	}
+	addCell(cell, choice = null) {
+		if (cell instanceof Choice) {
+			let choice = cell;
+			cell = new Cell(this, choice);
+			choice.addCell(cell, this);
+			this.addCell(cell, choice);
+			return this;
+		}
+		choice = choice || cell.choices.find(choice => choice !== this);
+		this.cells.set(choice.path, cell);
+		return this;
+	}
+	addCell4Choice(...choices) {
+		choices.forEach(choice => {
+			this.addCell(choice);
+		});
+		return this;
+	}
+	
 	static from(xmlElement) {
 		if (xmlElement instanceof this) {
 			return xmlElement;
@@ -78,11 +102,11 @@ class Choice {
 }
 class Cell {
 	_state = null;
+	choices = null;
 	auto = false;
 	name = "cell";
-	constructor(owner, corresponding) {
-		this.owner = owner;
-		this.corresponding = corresponding;
+	constructor(choice1, choice2) {
+		this.choices = [choice1, choice2];
 	}
 	get state() {
 		return this._state;
@@ -90,6 +114,19 @@ class Cell {
 	set state(value) {
 		if (value === this._state) return;
 		this._state = value;
+	}
+	get path() {
+		return this.choices.join('-');
+	}
+	connect() {
+		const [choice1, choice2] = this.choices;
+		if (!choice1.cells.has(choice2.property.id)) {
+			choice1.cells.set(choice2.property.id, new Collection());
+		}
+		if (!choice2.cells.has(choice1.property.id)) {
+			choice2.cells.set(choice1.property.id, new Collection());
+		}
+		console.log(`Connect ${choice1} ${choice2}`);
 	}
 	strike(auto = false) {
 		this.auto = auto || false;
@@ -121,7 +158,7 @@ class Cell {
 		console.log(this.toString());
 	}
 	toString() {
-		return `${this.owner}-${this.corresponding}`;
+		return this.path;
 	}
 }
 export { Property, Choice, Cell };

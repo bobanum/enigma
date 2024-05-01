@@ -7,7 +7,7 @@
 			<div class="indices">
 				<h2>Les indices</h2>
 				<ol>
-					<EnigmaClue v-for="clue in enigma.clues" :clue="clue"></EnigmaClue>
+					<EnigmaClue v-for="clue of enigma.clues" :clue="clue"></EnigmaClue>b
 				</ol>
 			</div>
 			<EnigmaGrid v-if="enigma.properties" :properties="enigma.properties"></EnigmaGrid>
@@ -19,7 +19,6 @@
 	</div>
 </template>
 <script setup>
-import { Property } from '~/src/Property.js';
 const props = defineProps({
 	enigma: Object
 });
@@ -34,7 +33,7 @@ console.log(props.enigma);
 // enigma.properties = [...props.enigma.querySelector('props').children].map(p => Property.from(p));
 // enigma.properties.forEach((p, i) => {
 // 	p.choices.forEach(c => {
-// 		c.addCellProperty(...enigma.properties.slice(i + 1))}
+// 		c.addCell4Property(...enigma.properties.slice(i + 1))}
 // 	);
 // });
 </script>

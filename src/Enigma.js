@@ -1,39 +1,25 @@
+import Collection from "./Collection.js";
 import Property from "./Property.js";
 import XMLObject from "./XMLObject.js";
 
 
 export default class Enigma extends XMLObject {
-	properties = {};
+	properties = null;
 	clues = [];
 	constructor(xmlElement) {
 		super(xmlElement);
-		this.properties = {};
-		Object.defineProperties(this.properties, {
-			'length': {
-				get: function () { return Object.keys(this).length; }
-			},
-			'values': {
-				get: function () { return Object.values(this); }
-			},
-			'choicesCount': {
-				get: function () { return this.values[0].choices.length; }
-			},
-			'test': {
-				get: function () { return this.values[0].choices.length; }
-			}
-		});
+		this.properties = new Collection();
 	}
 	addProperty(...properties) {
 		properties.forEach(property => {
 			property = Property.from(property);
 			property.enigma = this;
-			const propsIds = Object.keys(this.properties);
-			this.properties[property.id] = property;
+			const propsIds = this.properties.k();
+			this.properties.set(property.id, property);
 			propsIds.forEach(propId => {
-				property.addCellProperty(this.properties[propId]);
+				property.addCell4Property(this.properties.get(propId));
 			});
 		});
-		console.log(this.properties);
 	}
 	static from(xmlElement) {
 		if (xmlElement instanceof this) {
