@@ -43,7 +43,6 @@ function strike() {
 }
 function check(auto = true) {
 	cell.state = "O";
-	var coord = this.coord(cell, false);
 	// ON ÉLIMINE LA CASE
 	// this.eliminerVoisins(coord);
 	// ON ELIMINE LES BARREE

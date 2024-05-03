@@ -4,31 +4,22 @@
 		<header class="top">
 			<div class="prop" v-for="prop in propsTop">
 				<h1>{{ prop.name }}</h1>
-				<div class="choice" v-for="choice in prop.choices" v-html="choice.text"></div>
+				<div class="choice" v-for="[id, choice] in prop.choices" v-html="choice.text"></div>
 			</div>
 		</header>
 		<header class="left">
 			<div class="prop" v-for="prop in propsLeft">
 				<h1>{{ prop.name }}</h1>
-				<div class="choice" v-for="choice, j in prop.choices" v-html="choice.text"></div>
+				<div class="choice" v-for="[id, choice] in prop.choices" v-html="choice.text"></div>
 			</div>
 		</header>
 		<div class="cells">
 			<template v-for="propLeft, i in propsLeft">
 				<template v-for="propTop in propsTop.slice(0, propsLeft.length - i)">
 					<div class="group">
-						<!-- {{ console.log('groupe', propLeft.id, propTop.id) }} -->
 						<template v-for="[idLeft, choiceLeft] of propLeft.choices">
 							<template v-for="[idTop, choiceTop] of propTop.choices">
-								<!-- {{ console.log(choiceLeft.path, choiceTop.path) }} -->
-								<!-- {{ console.log(choiceLeft.cells.get(choiceTop.path))}} -->
-								<EnigmaCell :cell="choiceLeft.cells.get(choiceTop.path)">
-								</EnigmaCell>
-
-								<!-- a{{ propTop.choices.length }} -->
-								<!-- {{ console.log(choiceTop.path, choiceLeft.cells.get(choiceTop.path)) }} -->
-								<!-- <EnigmaCell :cell="choiceLeft.cells.get(choiceTop.path)">
-								</EnigmaCell> -->
+								<EnigmaCell :cell="choiceLeft.cells.get(choiceTop.path)"></EnigmaCell>
 							</template>
 						</template>
 					</div>

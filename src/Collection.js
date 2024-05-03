@@ -37,6 +37,15 @@ export default class Collection extends Map {
 
 	gather(property) {
 		const result = new Collection();
+		if (typeof property === "function") {
+			for (const [key, value] of this) {
+				let r = property(value, key);
+				if (r !== undefined) {
+					result.set(key, r);
+				}
+			}
+			return result;
+		}
 		for (const [key, value] of this) {
 			if (value[property]) {
 				result.set(key, value[property]);
