@@ -4,7 +4,7 @@
 		<h1>Énigme : {{ enigma.title }}</h1>
 		<p class="intro" v-html="enigma.intro"></p>
 		<div class="colonnes">
-			<div class="indices">
+			<div class="clues">
 				<h2>Les indices</h2>
 				<ol>
 					<EnigmaClue v-for="clue of enigma.clues" :clue="clue"></EnigmaClue>b
@@ -22,4 +22,5 @@
 const props = defineProps({
 	enigma: Object
 });
+console.log(props.enigma.clues);
 </script>

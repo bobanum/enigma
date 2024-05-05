@@ -1,6 +1,6 @@
 <template>
 	<li>
-		<span class="part" v-for="part in clue.parts" v-html="part.innerHTML"></span>
+		<span class="part" v-for="part in clue.parts" v-html="part.toString()"></span>
 	</li>
 </template>
 
@@ -8,14 +8,5 @@
 const props = defineProps({
 	clue: Object,
 });
-const clue = reactive({
-	parts: computed(() => [...props.clue?.children||[]]),
-});
-[...props.clue.querySelectorAll("ref")].forEach(ref => {
-	const span = document.createElement("span");
-	span.classList.add("ref");
-	span.setAttribute("data-prop", ref.getAttribute("prop"));
-	span.innerHTML = ref.innerHTML;
-	ref.replaceWith(span);
-});
+console.log(props.clue);
 </script>

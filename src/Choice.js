@@ -1,13 +1,14 @@
 import Collection from './Collection.js';
 import Cell from './Cell.js';
+import XMLObject from './XMLObject.js';
 
-export default class Choice {
+export default class Choice extends XMLObject {
+	static defaultAttributes = ['id', 'abbr'];
+	static defaultElements = [];
 	cells = null;
-	constructor(id, text, abbr = "") {
+	constructor(xmlElement) {
+		super(xmlElement);
 		this.cells = new Collection();
-		this.id = id;
-		this.text = text;
-		this.abbr = abbr;
 	}
 	toString() {
 		return this.path;
@@ -45,15 +46,8 @@ export default class Choice {
 		});
 		return this;
 	}
-
-	static from(xmlElement) {
-		if (xmlElement instanceof this) {
-			return xmlElement;
-		}
-		const id = xmlElement.getAttribute('id');
-		const text = xmlElement.textContent;
-		const abbr = xmlElement.getAttribute('abbr') || "";
-		const result = new Choice(id, text, abbr);
-		return result;
-	}
+	// static from(xmlElement) {
+	// 	const result = super.from(xmlElement);
+	// 	return result;
+	// }
 }

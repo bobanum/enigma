@@ -8,14 +8,7 @@ const props = defineProps({
 	cell: Object,
 });
 const cell = reactive(props.cell);
-// const state = computed({
-// 	get: () => props.cell.state,
-// 	set: (value) => {
-// 		props.cell.state = value;
-// 	}
-// });
 
-const auto = ref(false);
 const evt = {
 	click: (e) => {
 		if (cell.state != null || cell.auto) return;
@@ -27,27 +20,12 @@ const evt = {
 			// var op = "≠";
 			strike();
 		}
-		// this.trouverComplets();
-		// var code = `${op};${coord}`;
-		// this.ajouterAction(code, e.currentTarget);
-		// console.log(e.currentTarget.action);
-		// this.mettreAJour();
 	},
 };
 function strike() {
-	cell.state = "X";
-	// var coord = this.coord(cell, false);
-	// ON ELIMINE LES BARREE
-	// this.eliminerCorrespondantsBarre(coord);
-	// ON COCHE LES COCHEES
+	cell.strike();
 }
-function check(auto = true) {
-	cell.state = "O";
-	// ON ÉLIMINE LA CASE
-	// this.eliminerVoisins(coord);
-	// ON ELIMINE LES BARREE
-	// this.eliminerCorrespondantsCoche(coord);
-	// ON COCHE LES COCHEES
-
+function check() {
+	cell.check();
 }
 </script>

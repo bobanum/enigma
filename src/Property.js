@@ -3,14 +3,20 @@ import Collection from './Collection.js';
 import XMLObject from './XMLObject.js';
 
 export default class Property extends XMLObject {
+	static defaultAttributes = ['id', 'name', 'ordered'];
+	static defaultElements = [
+		{ 
+			selector: 'choice',
+			parser: (xmlElement) => Choice.from(xmlElement),
+			handler: 'addChoice'
+		}
+	];
+
 	ordered = false;
 	choices = null;
-	constructor(id, name, choices = []) {
+	constructor(xmlElement) {
 		super();
 		this.choices = new Collection();
-		this.id = id;
-		this.name = name;
-		this.addChoice(...choices);
 	}
 	toString() {
 		return this.id;
@@ -31,15 +37,14 @@ export default class Property extends XMLObject {
 		});
 		return this;
 	}
+	static parseChoice(xmlElement) {
+		return Choice.from(xmlElement);
+	}
 	static from(xmlElement) {
-		if (xmlElement instanceof Property) {
-			return xmlElement;
-		}
-		const result = new Property();
-		result.parseAttributes(xmlElement, ["id", "name", "ordered"]);
-		result.parseElements(xmlElement, 'choice', Choice, (...choices) => {
-			result.addChoice(...choices);
-		});
+		const result = super.from(xmlElement);
+		// result.parseElements(xmlElement, 'choice', Choice, (...choices) => {
+		// 	result.addChoice(...choices);
+		// });
 		// const choices = Array.from(xmlElement.getElementsByTagName('choice'));
 		// result.ordered = (xmlElement.hasAttribute('ordered'));
 		return result;
