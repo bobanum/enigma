@@ -61,8 +61,10 @@ export default class Cell {
 		}
 		this.auto = auto || false;
 		this._state = "X";
+		this.matches.forEach(cell => {
+			cell.strike(true);
+		});
 		this.checkComplete();
-		this.setCorrespondingTo("X", "O");
 	}
 	check(auto = false) {
 		if (this._state === "O") return;
@@ -72,9 +74,29 @@ export default class Cell {
 		}
 		this.auto = auto || false;
 		this._state = "O";
-		this.setCorrespondingTo("X", "X");
-		this.setCorrespondingTo("O", "O");
+		this.mergeCells();
 		this.strikeNeighbours();
+		this.matches.forEach(cell => {
+			cell.check(true);
+		});
+	}
+	mergeCells() {
+		this.otherProperties.forEach(property => {
+			console.log("Merging cells for " + property);
+			for (const [id, choice] of property.choices) {
+				const match1 = choice.cells.get(this.choices[0].path);
+				const match2 = choice.cells.get(this.choices[1].path);
+				match1.addMatch(match2);
+				match2.addMatch(match1);
+				if (match1.state) {
+					match2.setState(match1.state, true);
+				}
+				if (match2.state) {
+					match1.setState(match2.state, true);
+				}
+			}
+		});
+		return this;
 	}
 	getPrime(cell, vertical = false) {
 		const idx = vertical ? 0 : 1;

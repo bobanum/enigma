@@ -7,7 +7,7 @@
 			<div class="clues">
 				<h2>Les indices</h2>
 				<ol>
-					<EnigmaClue v-for="clue of enigma.clues" :clue="clue"></EnigmaClue>b
+					<!-- <EnigmaClue v-for="clue of enigma.clues" :clue="clue"></EnigmaClue>b -->
 				</ol>
 			</div>
 			<EnigmaGrid v-if="enigma.properties" :properties="enigma.properties"></EnigmaGrid>

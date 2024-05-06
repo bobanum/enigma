@@ -8,5 +8,5 @@
 const props = defineProps({
 	clue: Object,
 });
-console.log(props.clue);
+// console.log(props.clue);
 </script>

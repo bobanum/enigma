@@ -13,6 +13,9 @@ export default class Choice extends XMLObject {
 	toString() {
 		return this.path;
 	}
+	get text() {
+		return this.textContent;
+	}
 	get path() {
 		return `${this.property.id}.${this.id}`;
 	}
