@@ -19,6 +19,9 @@ export default class Choice extends XMLObject {
 	get path() {
 		return `${this.property.id}.${this.id}`;
 	}
+	get enigma() {
+		return this.property.enigma;
+	}
 	addCell4Property(...properties) {
 		properties.forEach(property => {
 			if (property === this.property) return;

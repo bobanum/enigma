@@ -15,7 +15,7 @@ export default class Property extends XMLObject {
 	ordered = false;
 	choices = null;
 	constructor(xmlElement) {
-		super();
+		super(xmlElement);
 		this.choices = new Collection();
 	}
 	toString() {

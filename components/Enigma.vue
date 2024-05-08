@@ -7,10 +7,18 @@
 			<div class="clues">
 				<h2>Les indices</h2>
 				<ol>
-					<!-- <EnigmaClue v-for="clue of enigma.clues" :clue="clue"></EnigmaClue>b -->
+					<EnigmaClue v-for="clue of enigma.clues" :clue="clue"></EnigmaClue>b
 				</ol>
 			</div>
 			<EnigmaGrid v-if="enigma.properties" :properties="enigma.properties"></EnigmaGrid>
+			<div class="actions">
+				<h2>Actions</h2>
+				<ul>
+					<li v-for="action of enigma.actions">
+						<EnigmaAction :action="action"></EnigmaAction>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<!-- <div class="reference">Référence: Le cube de jeux. #171</div>
 		<div class="extra apres">
@@ -22,5 +30,11 @@
 const props = defineProps({
 	enigma: Object
 });
-console.log(props.enigma.clues);
 </script>
+<style>
+.colonnes {
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 2em;
+}
+</style>

@@ -1,6 +1,7 @@
 .actions {
     font-size: smaller;
     background-color: #222;
+    color: #fff;
     padding: 1em;
     margin: 1em 0;
     border-radius: 1em 0 0 1em;
@@ -30,8 +31,9 @@
         flex-direction: column;
         gap: .25em;
     }
-    li {
-        display: flex;
+    .action {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
         gap: 1ch;
         padding: 0.5em;
         background-color: #fff1;
@@ -40,7 +42,7 @@
         &.hover, &:hover {
             background-color: #ff03;
         }
-        span:first-child {
+        > div > div {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             flex-grow: 1;
@@ -55,25 +57,31 @@
                 text-align: right;
             }
         }
-        &.disabled span:first-child {
+        &.disabled div:first-child {
             opacity: .5;
         }
-        span:not(:first-child) {
-            width: 1.3em;
-            height: 1.3em;
-            font-family: 'Material Icons';
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        button {
+            color: inherit;
+            background-color: transparent;
+            border:none;
+            order: -1;
+            &:not(:first-child) {
+                width: 1.3em;
+                height: 1.3em;
+                font-family: 'Material Symbols Outlined', sans-serif;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            &.delete::before {
+                content: "delete";
+            }
+            &.visibility::before {
+                content: "visibility";
+            }
         }
-        span.delete::before {
-            content: "delete";
-        }
-        span.visibility::before {
-            content: "visibility";
-        }
-        &.disabled span.visibility::before {
+        &.disabled button.visibility::before {
             content: "visibility_off";
         }
     }

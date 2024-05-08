@@ -1,3 +1,4 @@
+import Action from './Action.js';
 import Collection from './Collection.js';
 
 export default class Cell {
@@ -7,6 +8,7 @@ export default class Cell {
 	name = "cell";
 	_properties = null;
 	_otherProperties = null;
+	actions = [];
 	matches = [];
 	constructor(choice1, choice2) {
 		this.choices = [choice1, choice2];
@@ -22,13 +24,16 @@ export default class Cell {
 			this.strike();
 		}
 	}
-	setState(value, auto = false) {
+	get enigma() {
+		return this.choices[0].enigma;
+	}
+	setState(value, action = null) {
 		if (value === "O") {
-			return this.check(auto);
+			return this.check(action);
 		} else if (value === "X") {
-			return this.strike(auto);
+			return this.strike(action);
 		} else {
-			return this[value](auto);
+			return this[value](action);
 		}
 	}
 	get path() {
@@ -53,34 +58,51 @@ export default class Cell {
 			}
 		}
 	}
-	strike(auto = false) {
+	addAction(action) {
+		if (this.actions.includes(action)) return;
+		this.actions.push(action);
+		action.addAutoCell(this);
+		return this;
+	}
+	strike(action = null) {
 		if (this._state === "X") return;
 		if (this._state === "O") {
 			// throw "Cannot strike a checked cell : " + this.path;
 			return;
 		}
-		this.auto = auto || false;
 		this._state = "X";
+		action = this.manageAction("notequal", action);
 		this.matches.forEach(cell => {
-			cell.strike(true);
+			cell.strike(action);
 		});
-		this.checkComplete();
+		this.checkComplete(action);
 	}
-	check(auto = false) {
+	check(action = false) {
 		if (this._state === "O") return;
 		if (this._state === "X") {
 			// throw "Cannot check a striked cell : " + this.path;
 			return;
 		}
-		this.auto = auto || false;
 		this._state = "O";
-		this.mergeCells();
-		this.strikeNeighbours();
+		action= this.manageAction("equal", action);
+		this.mergeCells(action);
+		this.strikeNeighbours(action);
 		this.matches.forEach(cell => {
-			cell.check(true);
+			cell.check(action);
 		});
 	}
-	mergeCells() {
+	manageAction(operator, action) {
+		this.auto = !!action;
+		if (!action) {
+			action = new Action(operator, this);
+			this.enigma.addAction(action);
+		} else {
+			action.addAutoCell(this);
+		}
+		this.addAction(action);
+		return action;
+	}
+	mergeCells(action) {
 		this.otherProperties.forEach(property => {
 			console.log("Merging cells for " + property);
 			for (const [id, choice] of property.choices) {
@@ -89,10 +111,10 @@ export default class Cell {
 				match1.addMatch(match2);
 				match2.addMatch(match1);
 				if (match1.state) {
-					match2.setState(match1.state, true);
+					match2.setState(match1.state, action);
 				}
 				if (match2.state) {
-					match1.setState(match2.state, true);
+					match1.setState(match2.state, action);
 				}
 			}
 		});
@@ -113,23 +135,12 @@ export default class Cell {
 			this.setCorrespondingTo(newState, correspondingState, true);
 			return this;
 		}
-		this.findCorresponding(correspondingState, vertical).forEach(cell => {
-			const prime = this.getPrime(cell, vertical);
-			prime.setState(newState, true);
-			// prime.matches.forEach(match => {
-			// 	// this.matches.setState(newState, true);
-			// });
-			if (correspondingState === "O" && newState === "O") {
-				cell.addMatch(this, prime, ...this.matches);
-				prime.addMatch(this, cell, ...this.matches);
-			}
-		});
 		return this;
 	}
-	checkComplete(vertical) {
+	checkComplete(action, vertical) {
 		if (vertical === undefined) {
-			this.checkComplete(false);
-			this.checkComplete(true);
+			this.checkComplete(action, false);
+			this.checkComplete(action, true);
 			return this;
 		}
 		const idx = vertical ? 1 : 0;
@@ -139,31 +150,14 @@ export default class Cell {
 		}
 		let cells = this.gatherRow(vertical).filter(cell => cell.state !== "X");
 		if (cells.length === 1) {
-			cells.pop().check(true);
+			cells.pop().check(action);
 		}
 		return this;
 	}
 
-	findCorresponding(state, vertical) {
-		if (vertical === undefined) {
-			return this.findCorresponding(state, false).concat(this.findCorresponding(state, true));
-		}
-		const idx = vertical ? 1 : 0;
-		let properties = this.otherProperties;
-		let checked = properties.map(property => {
-			return property.choices.gather((choice, key) => {
-				let cell = choice.cells.get(this.choices[idx].path);
-				if (cell && cell.state === state) {
-					return cell;
-				}
-				return;
-			}).v();
-		}).flat();
-		return checked;
-	}
-	strikeNeighbours() {
-		this.strikeRow();
-		this.strikeRow(true);
+	strikeNeighbours(action) {
+		this.strikeRow(action);
+		this.strikeRow(action, true);
 	}
 	gatherRow(vertical = false) {
 		let [choice1, choice2] = this.choices;
@@ -177,14 +171,14 @@ export default class Cell {
 		}
 		return result;
 	}
-	strikeRow(vertical = false) {
+	strikeRow(action, vertical = false) {
 		let [choice1, choice2] = this.choices;
 		if (vertical) {
 			[choice1, choice2] = [choice2, choice1];
 		}
 		for (const [id, otherChoice] of choice1.property.choices) {
 			if (otherChoice === choice1) continue;
-			otherChoice.cells.get(choice2.path).strike(true);
+			otherChoice.cells.get(choice2.path).strike(action);
 		}
 	}
 	toString() {

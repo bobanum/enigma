@@ -1,12 +1,10 @@
-<enigma 
+<enigma
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="enigma.xsd"
-title="Boîte de Pandore" 
-reference="Le cube de jeux. #171" 
+title="Boîte de Pandore"
+reference="Le cube de jeux. #171"
 image="img/derek.svg">
-	<intro>
-		Pandore Persimmons est l'animateur d'un jeu questionnaire durant lequel les concurrents méritent le droit d'ouvrir une des boites que l'on voit dans l'illustration. Le contenu des boites peut être très intéressant ou... nul. Pandore essaie de convaincre les participants d'abandonner leur chance d'ouvrir une boite en leur offrant de l'argent. Cette fois-ci, ça n'a pas marché. A l'aide des indices ci-dessous, trouvez l'ordre dans lequel les concurrents ouvriront les boites, quelle boite ils ouvriront et ce qu'ils gagneront.
-	</intro>
+	<intro> Pandore Persimmons est l'animateur d'un jeu questionnaire durant lequel les concurrents méritent le droit d'ouvrir une des boites que l'on voit dans l'illustration. Le contenu des boites peut être très intéressant ou... nul. Pandore essaie de convaincre les participants d'abandonner leur chance d'ouvrir une boite en leur offrant de l'argent. Cette fois-ci, ça n'a pas marché. A l'aide des indices ci-dessous, trouvez l'ordre dans lequel les concurrents ouvriront les boites, quelle boite ils ouvriront et ce qu'ils gagneront. </intro>
 	<style>
 		.avant: {
 		position: absolute,
@@ -58,12 +56,12 @@ image="img/derek.svg">
 			<choice id="susanne" abbr="Su">Suzanne</choice>
 		</prop>
 		<prop id="prix" name="Prix" ordered="true">
-			<choice id="savon" abbr="S">Savon</choice>
-			<choice id="cuillere" abbr="C">Cuillère</choice>
-			<choice id="a50" abbr="50¢">0,50$</choice>
-			<choice id="a100" abbr="100">100$</choice>
-			<choice id="a1k" abbr="1k">1000$</choice>
-			<choice id="a5k" abbr="5k">5000$</choice>
+			<choice id="savon" abbr="S" attribute="type=objet">Savon</choice>
+			<choice id="cuillere" abbr="C" attribute="type=objet">Cuillère</choice>
+			<choice id="a50" abbr="50¢" attribute="type=argent">0,50$</choice>
+			<choice id="a100" abbr="100" attribute="type=argent">100$</choice>
+			<choice id="a1k" abbr="1k" attribute="type=argent">1000$</choice>
+			<choice id="a5k" abbr="5k" attribute="type=argent">5000$</choice>
 		</prop>
 		<prop id="ordre" name="Ordre" ordered="true">
 			<choice id="premier" abbr="1er">Premier</choice>
@@ -75,15 +73,21 @@ image="img/derek.svg">
 		</prop>
 	</props>
 	<clues>
+		<!-- Operators: 
+			= : Equals to
+			!= : Different from
+			&lt; : Lower than
+			&gt; : Higher than
+		-->
 		<clue>
-			<part>L'<ref prop="ordre">ordre des concurrents</ref> ne correspond jamais au <ref prop="numero">numéro de la boite</ref>.</part>
+			<part formula="ordre#≠boite#">L'<ref prop="ordre">ordre des concurrents</ref> ne correspond jamais au <ref prop="numero">numéro de la boite</ref>.</part>
 		</clue>
 		<clue>
-			<part><ref prop="concurrents.lynne">Lynne</ref>, qui a ouvert la <ref prop="ordre.2">deuxième boite</ref>,</part>
-			<part>a gagné de l'<ref prop="prix">argent</ref>,</part>
-			<part>mais moins que <ref prop="concurrents.sharon">Sharon</ref></part>
-			<part>dont le tour précédait celui de <ref prop="concurrents.lynne">Lynne</ref></part>
-			<part>mais n'était pas  <ref prop="ordre">immédiatementavant</ref>.</part>
+			<part formula="concurrents.lynne=ordre.no2"><ref prop="concurrents.lynne">Lynne</ref>, qui a ouvert la <ref prop="ordre.no2">deuxième boite</ref>,</part>
+			<part formula="concurrents.lynne:prix=[type=argent]">a gagné de l'<ref prop="prix">argent</ref>,</part>
+			<part formula="concurrents.sharon:prix=[type=argent];concurrents.lynn:prix#&lt;concurrents.sharon:prix#;">mais moins que <ref prop="concurrents.sharon">Sharon</ref></part>
+			<part formula="concurrents.lynne:ordre#-concurrents.sharon:ordre#&gt;1;">dont le tour précédait celui de <ref prop="concurrents.lynne">Lynne</ref></part>
+			<part>mais n'était pas <ref prop="ordre">immédiatement avant</ref>.</part>
 		</clue>
 		<clue>
 			<part><ref prop="concurrents.michael">Michael</ref>, dont le tour est venu après celui du gagnant de <ref prop="prix.100">100$</ref>,</part>

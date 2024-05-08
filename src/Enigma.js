@@ -3,7 +3,6 @@ import Property from "./Property.js";
 import Clue from "./Clue.js";
 import Collection from "./Collection.js";
 
-
 export default class Enigma extends XMLObject {
 	static defaultAttributes = ['title', 'reference', 'image'];
 	static defaultElements = [
@@ -20,6 +19,7 @@ export default class Enigma extends XMLObject {
 	]
 	properties = null;
 	clues = [];
+	actions = [];
 	constructor(xmlElement) {
 		super(xmlElement);
 		this.properties = new Collection();
@@ -46,19 +46,13 @@ export default class Enigma extends XMLObject {
 			this.clues.push(clue);
 		});
 	}
+	addAction(...actions) {
+		actions.forEach(action => {
+			if (this.actions.includes(action)) return;
+			this.actions.push(action);
+		});
+	}
 	static parseProperty(xmlElement) {
 		return Property.from(xmlElement);
-	}
-	static from(xmlElement) {
-		const result = super.from(xmlElement);
-		// result.parseElements(xmlElement, 'prop', Property, (...properties) => {
-		// 	result.addProperty(...properties);
-		// });
-		console.log('result', result);
-		// result.parseElements(xmlElement, 'clues>*', Clue, (...clues) => {
-		// 	console.log('clues', clues);
-		// 	result.addClue(...clues);
-		// });
-		return result;
 	}
 }

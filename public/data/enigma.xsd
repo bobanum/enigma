@@ -19,6 +19,7 @@
         </xs:complexType>
       </xs:element>
     </xs:sequence>
+    <xs:attribute name="formula" type="xs:string" />
   </xs:complexType>
 
   <xs:complexType name="Case">
