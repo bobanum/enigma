@@ -1,6 +1,6 @@
 <template>
 	<div class="cell" :class="[cell.state, cell.auto ? 'auto' : null]" @click="evt.click">
-		<slot></slot>
+		<slot></slot>{{ cell.matches.length * 100 + cell.actions.length }}
 	</div>
 </template>
 <script setup>

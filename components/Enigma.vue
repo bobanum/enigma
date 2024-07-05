@@ -33,7 +33,9 @@ const props = defineProps({
 </script>
 <style>
 .colonnes {
-	display: flex;
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	grid-template-areas: "actions grid" "actions clues";
 	flex-direction: row-reverse;
 	gap: 2em;
 }

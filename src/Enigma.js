@@ -51,6 +51,15 @@ export default class Enigma extends XMLObject {
 			if (this.actions.includes(action)) return;
 			this.actions.push(action);
 		});
+		return this;
+	}
+	removeAction(...actions) {
+		actions.forEach(action => {
+			const pos = this.actions.indexOf(action);
+			if (pos < 0) return;
+			this.actions.splice(pos, 1);
+		});
+		return this;
 	}
 	static parseProperty(xmlElement) {
 		return Property.from(xmlElement);
